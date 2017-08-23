@@ -24,6 +24,20 @@ gulp.task('rev', function() {
 
 ```
 
+_with custom path_
+
+```
+var rev = require('gulp-rev-append');
+
+gulp.task('rev', function({
+  basePath: 'any/path'
+}) {
+  gulp.src('./index.html')
+    .pipe(rev())
+    .pipe(gulp.dest('.'));
+});
+```
+
 _terminal_
 ```
 $ gulp rev
@@ -69,6 +83,8 @@ will turn into something similar as the following after running `gulp-rev-append
 Any subsequent runs of the `gulp-rev-append` file will change the output _only_ if the target file(s) declared have been modified. This is because the revision hash is computed using the target file contents.
 
 The only requirement is that the dependency to be appended with the hash be declared using `?rev=`. The `@@hash` is not required, and any value will be overriden as the dependency file contents change.
+
+If necessary, you can set the desired path yourself, passing as an argument an object with the required `basePath` field. 
 
 why?
 ---
